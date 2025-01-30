@@ -1,3 +1,19 @@
+<?php 
+
+$user_email = mysqli_escape_string($conn , $_POST['user_email']);
+$user_password = mysqli_escape_string($conn , $_POST['user_email']);
+
+$userEmail = $_POST['user_email']=='admin@gmail.com';
+$userEmail = $_POST['user_password']=='12345678';
+
+
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,9 +29,37 @@
   <?php include('include/head-link.php');   ?>
 </head>
 
-<body style="background-color: ;">
+<body style="background-color: #22252a;">
 
+  <section style="height: 100vh;     align-content: center;">
+    <div class="container justify-content-center align-items-center " >
 
+      <div class="row justify-content-center " >
+
+        <div class="col-lg-6">
+          <div class="block">
+            <div class="title"><strong class="d-block">lAWYER</strong><span class="d-block"></span></div>
+            <in>Admin Login Password</P>
+            <div class="block-body">
+              <form  method="post">
+                <div class="form-group">
+                  <label class="form-control-label">Email</label>
+                  <input type="email" placeholder="Email Address" class="form-control" name="user_email">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Password</label>
+                  <input type="password" placeholder="Password" class="form-control" name="user_password">
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Login" class="btn btn-primary" name="admin-login">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   </div>
   <!-- JavaScript files-->

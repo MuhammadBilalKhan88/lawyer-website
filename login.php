@@ -33,6 +33,7 @@ if (isset($_POST['login-btn'])) {
             $_SESSION['loggedin'] = true;
             $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['user_email'] = $user['user_email'];
+            $_SESSION['user_type'] = $user['user_type'];
             $_SESSION['user_id'] = $user['id'];
 
             if($user['user_type'] == 'lawyer'){
@@ -119,7 +120,7 @@ if (isset($_POST['login-btn'])) {
                         </div>
                         <div class="col-xl-3 col-lg-2 d-none d-lg-block">
 
-                            <div class="d-flex ">
+                            <div class="d-flex" style="align-items: center;    gap: 8px; ">
                                 <a href="sign-up-lawyer.php" class="boxed-btn4 " style="padding: 9px 40px;">Signup</a>
                                 <a href="login.php" class="boxed-btn4 " style="padding: 9px 40px;">Login</a>
 

@@ -117,7 +117,7 @@ if (isset($_POST['sign-up-btn'])) {
                         </div>
                         <div class="col-xl-3 col-lg-2 d-none d-lg-block">
 
-                            <div class="d-flex ">
+                            <div class="d-flex" style="align-items: center;    gap: 8px; ">
                                 <a href="sign-up-lawyer.php" class="boxed-btn4 " style="padding: 9px 40px;">Signup</a>
                                 <a href="login.php" class="boxed-btn4 " style="padding: 9px 40px;">Login</a>
 
