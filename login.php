@@ -3,7 +3,7 @@ $login = false;
 session_start();
 
 
-include('adminpanel/Database/connection.php');
+include('admin/Database/connection.php');
 $msg = "";
 if (isset($_POST['login-btn'])) {
 

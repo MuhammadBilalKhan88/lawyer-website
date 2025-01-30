@@ -42,11 +42,11 @@
                                 echo '<a href="sign-up-lawyer.php" class="boxed-btn4 mx-2" style="    padding: 9px 40px;">Signup</a>';
                                 echo '<a href="sign-up-lawyer.php" class="boxed-btn4 " style="    padding: 9px 40px;">Login</a>';
                             } else{
-
+                                $useremail = urlencode($_SESSION['user_email']);
                                 if($_SESSION['user_type']==='lawyer'){
-                                       $dashboard_link = "lawyer-dashboard.php"; 
+                                       $dashboard_link = "lawyer-dashboard.php?lawyer=".$useremail; 
                                 }elseif($_SESSION['user_type']==='Admin'){
-                                    $dashboard_link = "adminpanel/index.php"; 
+                                    $dashboard_link = "admin/dashboard.php?usereamil=".$useremail; 
                                 }else{
                                     $dashboard_link = "#";
                                 }

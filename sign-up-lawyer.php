@@ -1,6 +1,6 @@
 <?php
 
-include('adminpanel/Database/connection.php');
+include('admin/Database/connection.php');
 error_reporting(0);
 
 if (isset($_POST['sign-up-btn'])) {

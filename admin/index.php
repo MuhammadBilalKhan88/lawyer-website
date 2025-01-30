@@ -1,14 +1,60 @@
 <?php 
+session_start();
+include("Database/connection.php");
+$msg="";
 
-$user_email = mysqli_escape_string($conn , $_POST['user_email']);
-$user_password = mysqli_escape_string($conn , $_POST['user_email']);
+if(isset($_POST['admin-login'])){
+  $user_email = mysqli_escape_string($conn , $_POST['user_email']);
+$user_password = mysqli_escape_string($conn , $_POST['user_password']);
 
-$userEmail = $_POST['user_email']=='admin@gmail.com';
-$userEmail = $_POST['user_password']=='12345678';
+$login = false;
+session_start();
+
+
+include('admin/Database/connection.php');
+$msg = "";
 
 
 
 
+    //$user_email =  ($_POST['user_email']);
+    $user_email = mysqli_real_escape_string($conn, $_POST['user_email']);
+    $user_password = mysqli_real_escape_string($conn, $_POST['user_password']);
+    //$user_password = ($_POST['user_password']);
+
+    $qurey = "SELECT * FROM `users` WHERE `user_email` = '{$user_email}' LIMIT 1";
+    $res = mysqli_query($conn, $qurey);
+
+    
+
+    if (!$res) {
+        die("Query Failed: " . mysqli_error($conn));
+    }
+
+
+    $user = mysqli_fetch_assoc($res);
+
+    if ($user) {
+
+        if (password_verify($user_password, $user['user_password'])) {
+       
+            $_SESSION['loggedin'] = true;
+            $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['user_email'] = $user['user_email'];
+            $_SESSION['user_type'] = $user['user_type'];
+            $_SESSION['user_id'] = $user['id'];
+
+            
+             // Redirect to the index page
+             header('Location: dashboard.php');
+             exit();
+        } else {
+            $msg = "<div class='alert alert-danger'>Pasword Does Not Match</div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger'>Email Does Not Exist</div>";
+    }
+}
 
 
 
@@ -53,6 +99,7 @@ $userEmail = $_POST['user_password']=='12345678';
                 <div class="form-group">
                   <input type="submit" value="Login" class="btn btn-primary" name="admin-login">
                 </div>
+                <?php echo $msg; ?>
               </form>
             </div>
           </div>
