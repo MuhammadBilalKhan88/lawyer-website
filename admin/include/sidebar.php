@@ -1,3 +1,4 @@
+
 <nav id="sidebar">
       <!-- Sidebar Header-->
       <div class="sidebar-header d-flex align-items-center">
@@ -9,10 +10,10 @@
       </div>
       <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
       <ul class="list-unstyled">
-        <li class="active"><a href="index.php"> <i class="icon-home"></i>Home </a></li>
+        <li class="active"><a href="dashboard.php"> <i class="icon-home"></i>Home </a></li>
         <li><a href="acc-management.php"> <i class="fa-solid fa-users"></i>Accounts Managemnet</a></li>
-        <li><a href="#"> <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
-        <li><a href="#"> <i class="fas fa-balance-scale"></i>Services Mangement</a></li>
+        <li><a href="lawyer-management.php"> <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
+        <li><a href="lawyerservices-management.php"> <i class="fas fa-balance-scale"></i>Services Mangement</a></li>
         <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
               class="icon-windows"></i>Example dropdown </a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

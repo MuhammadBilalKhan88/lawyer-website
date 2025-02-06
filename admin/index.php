@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 include("Database/connection.php");
 $msg="";
 
@@ -11,7 +11,7 @@ $login = false;
 session_start();
 
 
-include('admin/Database/connection.php');
+
 $msg = "";
 
 
@@ -35,19 +35,23 @@ $msg = "";
     $user = mysqli_fetch_assoc($res);
 
     if ($user) {
-
+        // Password Verification
         if (password_verify($user_password, $user['user_password'])) {
-       
+    
             $_SESSION['loggedin'] = true;
             $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['user_email'] = $user['user_email'];
             $_SESSION['user_type'] = $user['user_type'];
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] = $user['user_id'];
 
+              //  Admin Redirect
+              if ($user['user_email'] == "admin@gmail.com") {
+                header('Location: dashboard.php');
+                exit();
+              }else{
+                $msg = "<div class='alert alert-danger'>Email And Pasword Does Not Match</div>";
+              }
             
-             // Redirect to the index page
-             header('Location: dashboard.php');
-             exit();
         } else {
             $msg = "<div class='alert alert-danger'>Pasword Does Not Match</div>";
         }

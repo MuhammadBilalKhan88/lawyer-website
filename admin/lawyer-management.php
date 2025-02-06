@@ -39,8 +39,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
       <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
       <ul class="list-unstyled">
         <li><a href="dashboard.php"> <i class="icon-home"></i>Home </a></li>
-        <li class="active"><a href="acc-management.php"> <i class="fa-solid fa-users"></i>Accounts Managemnet</a></li>
-        <li><a href="lawyer-management.php"> <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
+        <li ><a href="acc-management.php"> <i class="fa-solid fa-users"></i>Accounts Managemnet</a></li>
+        <li class="active"><a href="lawyer-management.php" > <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
         <li><a href="lawyerservices-management.php"> <i class="fas fa-balance-scale"></i>Services Mangement</a></li>
 
     </nav>
@@ -56,36 +56,47 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <div class="col-lg-12">
           <div class="block">
             <div class="title d-flex align-items-center justify-content-between  ">
-              <strong class="">All Account</strong><span class="d-block"></span>
-              <a href="addAccount.php" style="    font-size: 1.25rem;
-    color: #a5a7ab;"><strong class="text-end">Add New Account <i class="fa-solid fa-plus"></i></strong></a>
+              <strong class="">All Lawyers</strong><span class="d-block"></span>
+              <a href="addLawyer.php" style="    font-size: 1.25rem;
+    color: #a5a7ab;"><strong class="text-end">Add New Lawyer <i class="fa-solid fa-plus"></i></strong></a>
             </div>
             <div class="block-body">
               <table class="table table-bordered " style="border-color: #343a40;">
                 <thead>
-                  <th>User Id</th>
-                  <th>User Name</th>
-                  <th>User Email</th>
-                  <th>User Type</th>
+                  <th>Lawyer Id</th>
+                  <th>User  Id</th>
+                  <th>Lawyer Name</th>
+                  <th>Lawyer Email</th>
+                  <th>Lawyer Location</th>
+                  <th>Lawyer Image</th>
+                  <th>Lawyer Clandly Url</th>
+                  <th>Services Id</th>
+                  
                   <th>Action</th>
                 </thead>
                 <tbody>
 
                   <?php
-                  $qurey = "call GetAllUsers()";
+                  $qurey = "call GetAllLawyers()";
                   $res  = mysqli_query($conn, $qurey);
 
                   while ($row = mysqli_fetch_assoc($res)) { ?>
 
                     <tr>
 
-                      <td><?php echo $row['user_id'] ?></td>
-                      <td><?php echo $row['user_name'] ?></td>
-                      <td><?php echo $row['user_email'] ?></td>
-                      <td><?php echo $row['user_type'] ?></td>
+                      <td><?php echo $row['lawyer_id'] ?></td>
+                      <td><?php echo $row['userid'] ?></td>
+                      <td><?php echo $row['lawyer_name'] ?></td>
+                      <td><?php echo $row['lawyer_email'] ?></td>
+                      <td><?php echo $row['lawyer_location'] ?></td>
+                      <td>
+                        <img src="../img/lawyerImage/<?php echo $row['lawyer_pimage']; ?>" alt="Lawyer Image" style="width:150px;">
+                      </td>
+                      <td><?php echo $row['lawyer_calendly_url'] ?></td>
+                      <td><?php echo $row['lawyer_specialization'] ?></td>
                       <td>
 
-                        <!-- <a href="#" class="btn btn-primary">View</a> -->
+                   
                         <a href="editAccount.php?id=<?php echo $row['user_id'] ?>" class="btn btn-warning">Edit</a>
                         <a href="deleteAccount.php?id=<?php echo $row['user_id'] ?>" class="btn btn-danger">Delete</a>
 
