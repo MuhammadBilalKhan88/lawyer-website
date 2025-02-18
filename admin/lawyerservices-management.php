@@ -84,8 +84,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                       <td>
 
                         <!-- <a href="#" class="btn btn-primary">View</a> -->
-                        <a href="editAccount.php?id=<?php echo $row['service_id'] ?>" class="btn btn-warning">Edit</a>
-                        <a href="deleteAccount.php?id=<?php echo $row['service_id'] ?>" class="btn btn-danger">Delete</a>
+                        <a href="editServices.php?id=<?php echo $row['service_id'] ?>" class="btn btn-warning">Edit</a>
+                        <a href="deleteServices.php?id=<?php echo $row['service_id'] ?>" class="btn btn-danger">Delete</a>
 
                       </td>
                     </tr>

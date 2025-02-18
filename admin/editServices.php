@@ -2,26 +2,35 @@
 
 include("Database/connection.php");
 
+
+$getid = $_GET['id'];
+$qurey = "SELECT * FROM `lawyers_services` WHERE  `service_id` = $getid ";
+$res = mysqli_query($conn, $qurey);
+
+
+
+
+$row = mysqli_fetch_assoc($res);
+
+if (!$res) {
+    die("Qurey Failed " .  mysqli_error($conn));
+}
+
 $msg = "";
 
-if (isset($_POST['addService-btn'])) {
+if (isset($_POST['editServices-btn'])) {
 
+    $services_name = $_POST['services_name'];
 
-    $ServiceName = $_POST['service_name'];
+    $query2 = "UPDATE `lawyers_services` SET `service_name`='$services_name' WHERE `service_id` = $getid";
 
-    // Prepare the statement to prevent SQL injection
-    $sql = "CALL AddService(?)";
-    $stmt = mysqli_prepare($conn, $sql);
+    $res2 = mysqli_query($conn, $query2);
 
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "s", $ServiceName);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        header('Location: lawyerservices-management.php');
-        exit();
-    } else {
-        die("Query Failed: " . mysqli_error($conn));
+    if (!$res2) {
+        die("Qurey Failed " . mysqli_error($conn));
     }
+
+    header('location:lawyerservices-management.php');
 }
 
 ?>
@@ -31,7 +40,7 @@ if (isset($_POST['addService-btn'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add New Service</title>
+    <title>Edit Lawyer Services</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -56,10 +65,10 @@ if (isset($_POST['addService-btn'])) {
             </div>
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="dashboard.php"> <i class="icon-home"></i>Home </a></li>
-                <li class="acc-management.php"><a href="acc-management.php"> <i class="fa-solid fa-users"></i>Accounts Managemnet</a></li>
-                <li><a href="lawyer-management.php"> <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
-                <li><a href="lawyerservices-management.php"> <i class="fas fa-balance-scale"></i>Services Mangement</a></li>
+                <li><a href="index.php"> <i class="icon-home"></i>Home </a></li>
+                <li class=""><a href="acc-management.php"> <i class="fa-solid fa-users"></i>Accounts Managemnet</a></li>
+                <li><a href="#"> <i class="fas fa-gavel"></i>Lawyers Managemnet</a></li>
+                <li><a href="#"> <i class="fas fa-balance-scale"></i>Services Mangement</a></li>
 
         </nav>
         <!-- Sidebar Navigation end-->
@@ -75,22 +84,27 @@ if (isset($_POST['addService-btn'])) {
                     <div class="block">
 
                         <div class="block-body">
-                            <div class="title"><strong class="d-block">Add Service</strong><span class="d-block"></span></div>
+                            <div class="title"><strong class="d-block">Edit Account</strong><span class="d-block"></span></div>
                             <form action="" method="POST">
 
                                 <div class="mb-3">
-                                    <input type="text" Placeholder="Enter Service Name" class="form-control" name="service_name" required>
+                                    <input type="text" Placeholder="Enter Service Name" class="form-control" name="services_name" value="<?php echo $row['service_name'];  ?>">
                                 </div>
-
+                              
                         </div>
-
-
+                    
                         <div class="mb-3">
-                            <input class="btn btn-wanring" type="submit" value="Add Lawyer Services" name="addService-btn">
+                            <input class="btn btn-wanring" type="submit" value="Edit User" name="editServices-btn">
                         </div>
+
+
+
+
+
+
+
 
                         </form>
-
                     </div>
                 </div>
         </div>

@@ -61,7 +61,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     color: #a5a7ab;"><strong class="text-end">Add New Lawyer <i class="fa-solid fa-plus"></i></strong></a>
             </div>
             <div class="block-body">
-              <table class="table table-bordered " style="border-color: #343a40;">
+              <table class="table table-bordered table-responsive" style="border-color: #343a40;">
                 <thead>
                   <th>Lawyer Id</th>
                   <th>User  Id</th>
@@ -94,12 +94,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                       </td>
                       <td><?php echo $row['lawyer_calendly_url'] ?></td>
                       <td><?php echo $row['lawyer_specialization'] ?></td>
-                      <td>
-
-                   
-                        <a href="editAccount.php?id=<?php echo $row['user_id'] ?>" class="btn btn-warning">Edit</a>
-                        <a href="deleteAccount.php?id=<?php echo $row['user_id'] ?>" class="btn btn-danger">Delete</a>
-
+                      <td>  
+                      <a href="editLawyer.php?id=<?php echo $row['lawyer_id'] ?>" class="btn btn-warning">Edit</a>
+                        <a href="deleteLawyer.php?id=<?php echo $row['lawyer_id'] ?>" class="btn btn-danger">Delete</a>
                       </td>
                     </tr>
                   <?php }

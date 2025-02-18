@@ -29,7 +29,7 @@ if (isset($_POST['addLawyer-btn'])) {
     move_uploaded_file($Lawyer_Image['tmp_name'], $uploadPath);
 
     // Insert Query
-    $query2 = "INSERT INTO `lawyers`(`userid`, `lawyer_name`, `lawyer_email`, `lawyer_specialization`, `lawyer_location`, `lawyer_pimage`, `lawyer_calendly_url`, `lawyer_experince`) VALUES (?,?,?,?,?,?,?,?)";
+    $query2 = "Call insertlawyer(`userid`, `lawyer_name`, `lawyer_email`, `lawyer_specialization`, `lawyer_location`, `lawyer_pimage`, `lawyer_calendly_url`, `lawyer_experince`) VALUES (?,?,?,?,?,?,?,?)";
 
 
     $stmt = $conn->prepare($query2);
